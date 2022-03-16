@@ -14,6 +14,8 @@ const initializeFormValues = () => {
 
   getInvoice(id)
     .then(data => {
+      const subheaderElement = document.getElementById('subheader');
+      subheaderElement.innerText = `Numer faktury: ${data['number']}`;
 
     })
     .catch(error => {
