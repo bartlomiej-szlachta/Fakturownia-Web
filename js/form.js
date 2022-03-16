@@ -29,4 +29,36 @@ const initializeFormValues = () => {
     });
 };
 
+const sendFormData = (e) => {
+  const errorMessageElement = document.getElementById('error-message');
+
+  const id = new URLSearchParams(window.location.search).get('id');
+
+  const dataToSend = {
+    issue_date: document.getElementById('issue_date').value,
+    sell_date: document.getElementById('sell_date').value,
+    seller_name: document.getElementById('seller_name').value,
+    seller_tax_no: document.getElementById('seller_tax_no').value,
+    buyer_name: document.getElementById('buyer_name').value,
+    buyer_tax_no: document.getElementById('buyer_tax_no').value,
+  };
+
+  (id
+      ? updateInvoice(id, dataToSend)
+      : createInvoice(dataToSend)
+  )
+    .then(response => {
+      window.location.href = '../list.html';
+    })
+    .catch(error => {
+      showElement(errorMessageElement);
+    });
+
+  e.preventDefault();
+  e.stopPropagation();
+  return false;
+};
+
 initializeFormValues();
+
+document.getElementById('invoice-form').addEventListener('submit', sendFormData);
