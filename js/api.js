@@ -6,15 +6,32 @@ const params = new URLSearchParams({
   api_token: API_TOKEN,
 });
 
-const getAllInvoices = () => fetch(`${BASE_URL}.${DATA_FORMAT}?${params}`)
-  .then(response => response.json())
-  .catch(error => error.json());
+const handleApiResponse = (promise) => promise
+  .catch(error => {
+    if (error.json) {
+      throw error.json();
+    }
+    throw {
+      message: 'Błąd pobierania danych',
+    };
+  })
+  .then(response => {
+    if (!response.json) {
+      throw {
+        message: 'Błąd pobierania danych',
+      };
+    }
+    if (response.status !== 200) {
+      throw response.json();
+    }
+    return response.json();
+  });
 
-const getInvoice = (id) => fetch(`${BASE_URL}/${id}.${DATA_FORMAT}?${params}`)
-  .then(response => response.json())
-  .catch(error => error.json());
+const getAllInvoices = () => handleApiResponse(fetch(`${BASE_URL}.${DATA_FORMAT}?${params}`));
 
-const createInvoice = (data) => fetch(`${BASE_URL}.${DATA_FORMAT}?${params}`, {
+const getInvoice = (id) => handleApiResponse(fetch(`${BASE_URL}/${id}.${DATA_FORMAT}?${params}`));
+
+const createInvoice = (data) => handleApiResponse(fetch(`${BASE_URL}.${DATA_FORMAT}?${params}`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -24,11 +41,9 @@ const createInvoice = (data) => fetch(`${BASE_URL}.${DATA_FORMAT}?${params}`, {
       ...data,
     }
   }),
-})
-  .then(response => response.json())
-  .catch(error => error.json());
+}));
 
-const updateInvoice = (id, data) => fetch(`${BASE_URL}/${id}.${DATA_FORMAT}?${params}`, {
+const updateInvoice = (id, data) => handleApiResponse(fetch(`${BASE_URL}/${id}.${DATA_FORMAT}?${params}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
@@ -38,12 +53,8 @@ const updateInvoice = (id, data) => fetch(`${BASE_URL}/${id}.${DATA_FORMAT}?${pa
       ...data,
     }
   }),
-})
-  .then(response => response.json())
-  .catch(error => error.json());
+}));
 
-const deleteInvoice = (id) => fetch(`${BASE_URL}/${id}.${DATA_FORMAT}?${params}`, {
+const deleteInvoice = (id) => handleApiResponse(fetch(`${BASE_URL}/${id}.${DATA_FORMAT}?${params}`, {
   method: 'DELETE',
-})
-  .then(response => response.json())
-  .catch(error => error.json());
+}));
