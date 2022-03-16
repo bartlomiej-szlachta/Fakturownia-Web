@@ -20,8 +20,22 @@
 </head>
 <body>
 <div class="container">
-  <h1>Formularz</h1>
-  <a href="list.html">Lista</a>
+  <header>
+    <h1 id="header"></h1>
+  </header>
+  <main>
+    <div id="loading-animation" class="d-none">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status"></div>
+      </div>
+    </div>
+    <div id="error-message" class="d-none">
+      Nie udało się załadować danych
+    </div>
+  </main>
+  <footer>
+    <a href="list.html">Powrót do listy</a>
+  </footer>
 </div>
 <script type="text/javascript" src="js/api.js"></script>
 <script type="text/javascript" src="js/form.js"></script>
