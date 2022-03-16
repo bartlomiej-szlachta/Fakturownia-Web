@@ -24,6 +24,58 @@
     <h1 id="header"></h1>
   </header>
   <main>
+    <form id="invoice-form" class="d-none">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <div>
+              <label for="issue_date">Data wystawienia</label>
+              <input id="issue_date" type="date" />
+            </div>
+          </div>
+          <div class="col-6">
+            <div>
+              <label for="sell_date">Data sprzedaży</label>
+              <input id="sell_date" type="date" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <fieldset>
+              <legend>Sprzedawca</legend>
+            </fieldset>
+            <div>
+              <label for="seller_name">Nazwa</label>
+              <input id="seller_name" type="text" />
+            </div>
+            <div>
+              <label for="seller_tax_no">NIP</label>
+              <input id="seller_tax_no"
+                     type="text"
+                     maxlength="10"
+              />
+            </div>
+          </div>
+          <div class="col-6">
+            <fieldset>
+              <legend>Nabywca</legend>
+            </fieldset>
+            <div>
+              <label for="buyer_name">Nazwa</label>
+              <input id="buyer_name" type="text" />
+            </div>
+            <div>
+              <label for="buyer_tax_no">NIP</label>
+              <input id="buyer_tax_no"
+                     type="text"
+                     maxlength="10"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
     <div id="loading-animation" class="d-none">
       <div class="d-flex justify-content-center">
         <div class="spinner-border" role="status"></div>

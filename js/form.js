@@ -3,6 +3,8 @@ const initializeFormValues = () => {
   const headerElement = document.getElementById('header');
   if (!id) {
     headerElement.innerText = 'Nowa faktura';
+    const formElement = document.getElementById('invoice-form');
+    formElement.classList.remove('d-none');
     return;
   }
 
