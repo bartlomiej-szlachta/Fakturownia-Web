@@ -1,9 +1,9 @@
 const initializeFormValues = () => {
   const id = new URLSearchParams(window.location.search).get('id');
   const headerElement = document.getElementById('header');
+  const formElement = document.getElementById('invoice-form');
   if (!id) {
     headerElement.innerText = 'Nowa faktura';
-    const formElement = document.getElementById('invoice-form');
     formElement.classList.remove('d-none');
     return;
   }
@@ -16,7 +16,7 @@ const initializeFormValues = () => {
     .then(data => {
       const subheaderElement = document.getElementById('subheader');
       subheaderElement.innerText = `Numer faktury: ${data['number']}`;
-
+      formElement.classList.remove('d-none');
     })
     .catch(error => {
       const errorMessageElement = document.getElementById('error-message');
