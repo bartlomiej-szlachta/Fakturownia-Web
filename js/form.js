@@ -120,7 +120,22 @@ const sendFormData = (e) => {
     seller_tax_no: document.getElementById('seller_tax_no').value,
     buyer_name: document.getElementById('buyer_name').value,
     buyer_tax_no: document.getElementById('buyer_tax_no').value,
+    positions: [],
   };
+
+  const invoiceItemsLength = document.getElementsByClassName('positions-list-item').length;
+  for (let i = 1; i <= invoiceItemsLength; i++) {
+    const name = document.getElementById(`input--name--${i}`).value;
+    const tax = document.getElementById(`input--tax--${i}`).value;
+    const total_price_gross = document.getElementById(`input--total_price_gross--${i}`).value;
+    const quantity = document.getElementById(`input--quantity--${i}`).value;
+    dataToSend.positions.push({
+      name,
+      tax,
+      total_price_gross,
+      quantity,
+    });
+  }
 
   (id
       ? updateInvoice(id, dataToSend)
