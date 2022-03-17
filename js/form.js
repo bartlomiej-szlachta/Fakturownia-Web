@@ -11,42 +11,44 @@ const addInvoiceItem = (itemData) => {
 
   const listItemHtml = `
     <li class="positions-list-item">
-      <div class="row">
-        <div class="col-3">
-          <label for="${nameInputId}">Nazwa</label>
-          <input id="${nameInputId}"
-                 class="input--name"
-                 type="text"
-                 value="${itemData?.name ?? ''}"
-          />
-        </div>
-        <div class="col-3">
-          <label for="${taxInputId}">Stawka VAT</label>
-          <input id="${taxInputId}"
-                 class="input--vat"
-                 type="number"
-                 value="${itemData?.tax ?? ''}"
-                 min="0"
-          />
-        </div>
-        <div class="col-3">
-          <label for="${totalPriceGrossInputId}">Wartość brutto</label>
-          <input id="${totalPriceGrossInputId}"
-                 class="input--total_price_gross"
-                 type="number"
-                 value="${itemData?.total_price_gross ?? ''}"
-                 min="0"
-                 step="0.1"
-          />
-        </div>
-        <div class="col-3">
-          <label for="${quantityInputId}">Ilość</label>
-          <input id="${quantityInputId}"
-                 class="input--quantity"
-                 type="number"
-                 value="${itemData?.quantity ?? ''}"
-                 min="1"
-          />
+      <div class="container-fluid px-0">
+        <div class="row">
+          <div class="col-6 col-sm-3">
+            <label for="${nameInputId}">Nazwa</label>
+            <input id="${nameInputId}"
+                   class="input--name"
+                   type="text"
+                   value="${itemData?.name ?? ''}"
+            />
+          </div>
+          <div class="col-6 col-sm-3">
+            <label for="${taxInputId}">Stawka VAT</label>
+            <input id="${taxInputId}"
+                   class="input--vat"
+                   type="number"
+                   value="${itemData?.tax ?? ''}"
+                   min="0"
+            />
+          </div>
+          <div class="col-6 col-sm-3">
+            <label for="${totalPriceGrossInputId}">Wartość brutto</label>
+            <input id="${totalPriceGrossInputId}"
+                   class="input--total_price_gross"
+                   type="number"
+                   value="${itemData?.total_price_gross ?? ''}"
+                   min="0"
+                   step="0.1"
+            />
+          </div>
+          <div class="col-6 col-sm-3">
+            <label for="${quantityInputId}">Ilość</label>
+            <input id="${quantityInputId}"
+                   class="input--quantity"
+                   type="number"
+                   value="${itemData?.quantity ?? ''}"
+                   min="1"
+            />
+          </div>
         </div>
       </div>
     </li>

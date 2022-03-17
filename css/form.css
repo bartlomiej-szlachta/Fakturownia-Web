@@ -1,3 +1,16 @@
 body {
     padding-bottom: 70px;
 }
+
+ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+input {
+    width: 100%;
+}
+
+footer button {
+    margin: 2px;
+}
