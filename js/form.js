@@ -55,7 +55,7 @@ const sendFormData = (e) => {
       : createInvoice(dataToSend)
   )
     .then(response => {
-      window.location.href = '../list.html';
+      window.location.href = 'list.html';
     })
     .catch(error => {
       showElement(errorMessageElement);
