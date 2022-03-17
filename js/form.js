@@ -19,6 +19,13 @@ const initializeFormValues = () => {
   getInvoice(id)
     .then(data => {
       subheaderElement.innerText = `Numer faktury: ${data['number']}`;
+      Object.entries(data).forEach(([key, value]) => {
+        const input = document.getElementById(key);
+        if (!input) {
+          return;
+        }
+        input.value = value;
+      });
       showElement(formElement);
     })
     .catch(error => {
