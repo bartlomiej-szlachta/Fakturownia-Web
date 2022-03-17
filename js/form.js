@@ -1,3 +1,7 @@
+const navigateToList = () => {
+  window.location.href = 'list.html';
+};
+
 const addInvoiceItem = (itemData) => {
   const invoiceItemOrder = document.getElementsByClassName('positions-list-item').length + 1;
   const nameInputId = `input--name--${invoiceItemOrder}`;
@@ -142,7 +146,7 @@ const sendFormData = (e) => {
       : createInvoice(dataToSend)
   )
     .then(response => {
-      window.location.href = 'list.html';
+      navigateToList();
     })
     .catch(error => {
       showElement(errorMessageElement);
@@ -156,4 +160,6 @@ const sendFormData = (e) => {
 initializeFormValues();
 
 document.getElementById('invoice-form').addEventListener('submit', sendFormData);
+document.getElementById('button-save-invoice').addEventListener('click', sendFormData);
 document.getElementById('button-add-item').addEventListener('click', addInvoiceItem);
+document.getElementById('button-go-to-list').addEventListener('click', navigateToList);

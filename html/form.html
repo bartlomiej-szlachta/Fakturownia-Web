@@ -83,13 +83,10 @@
             <p id="message-no-items" class="d-none">
               Brak pozycji faktury
             </p>
-            <button id="button-add-item" type="button">
-              Dodaj pozycję
-            </button>
           </div>
         </div>
         <div class="row">
-          <button type="submit">
+          <button type="submit" class="d-none">
             Zapisz
           </button>
         </div>
@@ -105,7 +102,17 @@
     </div>
   </main>
   <footer>
-    <a href="list.html">Powrót do listy</a>
+    <div class="navbar fixed-bottom">
+      <button id="button-add-item" type="button" class="mr-auto">
+        Dodaj pozycję
+      </button>
+      <button id="button-save-invoice">
+        Zapisz
+      </button>
+      <button id="button-go-to-list">
+        Powrót do listy
+      </button>
+    </div>
   </footer>
 </div>
 <script type="text/javascript" src="../js/api.js"></script>
