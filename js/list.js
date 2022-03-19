@@ -1,3 +1,6 @@
+const BUTTON_EDIT_INVOICE_CLASS_NAME = 'button-edit-invoice';
+const BUTTON_DELETE_INVOICE_CLASS_NAME = 'button-delete-invoice';
+
 const navigateToFormAddMode = () => {
   window.location.href = 'form.html';
 };
@@ -6,10 +9,23 @@ const navigateToFormEditMode = (id) => {
   window.location.href = `form.html?id=${id}`;
 };
 
+const disableAllFields = () => {
+  document.querySelectorAll(`.${BUTTON_DELETE_INVOICE_CLASS_NAME}`).forEach((button) => {
+    button.disabled = true;
+  });
+};
+
+const enableAllFields = () => {
+  document.querySelectorAll(`.${BUTTON_DELETE_INVOICE_CLASS_NAME}`).forEach((button) => {
+    button.disabled = false;
+  });
+};
+
 const requestDeleteInvoice = (id) => {
   const loadingAnimationElement = document.getElementById('loading-animation');
   const errorMessageElement = document.getElementById('error-message');
 
+  disableAllFields();
   showElement(loadingAnimationElement);
   hideElement(errorMessageElement);
 
@@ -21,6 +37,7 @@ const requestDeleteInvoice = (id) => {
       showElement(errorMessageElement);
     })
     .finally(() => {
+      enableAllFields();
       hideElement(loadingAnimationElement);
     });
 };
@@ -28,8 +45,8 @@ const requestDeleteInvoice = (id) => {
 const addInvoiceListItem = (invoiceData) => {
   const listElement = document.getElementById('invoices-list');
 
-  const editInvoiceButtonId = `button-edit-invoice--${invoiceData.id}`;
-  const deleteInvoiceButtonId = `button-delete-invoice--${invoiceData.id}`;
+  const editInvoiceButtonId = `${BUTTON_EDIT_INVOICE_CLASS_NAME}--${invoiceData.id}`;
+  const deleteInvoiceButtonId = `${BUTTON_DELETE_INVOICE_CLASS_NAME}--${invoiceData.id}`;
   const liElement = document.createElement('li');
   liElement.id = invoiceData.id;
   liElement.innerHTML = `
@@ -46,10 +63,10 @@ const addInvoiceListItem = (invoiceData) => {
           </p>
         </div>
         <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
-          <button id="${editInvoiceButtonId}">
+          <button id="${editInvoiceButtonId}" class="${BUTTON_EDIT_INVOICE_CLASS_NAME}">
             Edytuj
           </button>
-          <button id="${deleteInvoiceButtonId}">
+          <button id="${deleteInvoiceButtonId}" class="${BUTTON_DELETE_INVOICE_CLASS_NAME}">
             Usuń
           </button>
         </div>
