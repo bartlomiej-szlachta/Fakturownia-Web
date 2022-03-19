@@ -33,12 +33,28 @@ const addInvoiceListItem = (invoiceData) => {
   const liElement = document.createElement('li');
   liElement.id = invoiceData.id;
   liElement.innerHTML = `
-    <button id="${editInvoiceButtonId}">
-      Edytuj
-    </button>
-    <button id="${deleteInvoiceButtonId}">
-      Usuń
-    </button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-sm-8">
+          <h6>
+            Faktura numer ${invoiceData['number']}
+          </h6>
+          <p>
+            Sprzedawca: ${invoiceData['seller_name']}
+            <br />
+            Nabywca: ${invoiceData['buyer_name']}
+          </p>
+        </div>
+        <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+          <button id="${editInvoiceButtonId}">
+            Edytuj
+          </button>
+          <button id="${deleteInvoiceButtonId}">
+            Usuń
+          </button>
+        </div>
+      </div>
+    </div>
   `;
   listElement.appendChild(liElement);
 
