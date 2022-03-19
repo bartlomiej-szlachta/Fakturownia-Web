@@ -1,19 +1,23 @@
+const POSITIONS_LIST_ITEM_CLASS_NAME = 'positions-list-item';
+const NEW_ITEM_ID_PREFIX = 'NewItem';
+
 const navigateToList = () => {
   window.location.href = 'list.html';
 };
 
 const addInvoiceItem = (itemData) => {
-  const invoiceItemOrder = document.getElementsByClassName('positions-list-item').length + 1;
-  const nameInputId = `input--name--${invoiceItemOrder}`;
-  const taxInputId = `input--tax--${invoiceItemOrder}`;
-  const totalPriceGrossInputId = `input--total_price_gross--${invoiceItemOrder}`;
-  const quantityInputId = `input--quantity--${invoiceItemOrder}`;
+  const invoiceItemId = itemData?.id ?? `${NEW_ITEM_ID_PREFIX}${new Date().getTime()}`;
+  const nameInputId = `input--name--${invoiceItemId}`;
+  const taxInputId = `input--tax--${invoiceItemId}`;
+  const totalPriceGrossInputId = `input--total_price_gross--${invoiceItemId}`;
+  const quantityInputId = `input--quantity--${invoiceItemId}`;
+  const removeItemButtonId = `button-remove-item--${invoiceItemId}`;
 
   const listItemHtml = `
-    <li class="positions-list-item">
+    <li id="${invoiceItemId}" class="${POSITIONS_LIST_ITEM_CLASS_NAME}">
       <div class="container-fluid px-0">
         <div class="row">
-          <div class="col-6 col-sm-3">
+          <div class="col-6 col-sm-4">
             <label for="${nameInputId}">Nazwa</label>
             <input id="${nameInputId}"
                    class="input--name"
@@ -21,7 +25,7 @@ const addInvoiceItem = (itemData) => {
                    value="${itemData?.name ?? ''}"
             />
           </div>
-          <div class="col-6 col-sm-3">
+          <div class="col-6 col-sm-2">
             <label for="${taxInputId}">Stawka VAT</label>
             <input id="${taxInputId}"
                    class="input--vat"
@@ -30,7 +34,7 @@ const addInvoiceItem = (itemData) => {
                    min="0"
             />
           </div>
-          <div class="col-6 col-sm-3">
+          <div class="col-6 col-sm-2">
             <label for="${totalPriceGrossInputId}">Wartość brutto</label>
             <input id="${totalPriceGrossInputId}"
                    class="input--total_price_gross"
@@ -40,7 +44,7 @@ const addInvoiceItem = (itemData) => {
                    step="0.1"
             />
           </div>
-          <div class="col-6 col-sm-3">
+          <div class="col-6 col-sm-2">
             <label for="${quantityInputId}">Ilość</label>
             <input id="${quantityInputId}"
                    class="input--quantity"
@@ -48,6 +52,21 @@ const addInvoiceItem = (itemData) => {
                    value="${itemData?.quantity ?? ''}"
                    min="1"
             />
+          </div>
+          <div class="col-12 col-sm-2"> 
+            <button id="${removeItemButtonId}"
+                    type="button"
+                    onclick="
+                      const listItemElement = document.getElementById('${invoiceItemId}');
+                      if (listItemElement.id.includes('${NEW_ITEM_ID_PREFIX}')) {
+                        listItemElement.remove();
+                      } else {
+                        listItemElement.classList.add('d-none');
+                      }
+                    "
+            >
+              Usuń
+            </button> 
           </div>
         </div>
       </div>
@@ -119,6 +138,8 @@ const sendFormData = (e) => {
 
   const id = new URLSearchParams(window.location.search).get('id');
 
+  const invoiceItemsLength = document.getElementsByClassName(POSITIONS_LIST_ITEM_CLASS_NAME).length;
+
   const dataToSend = {
     issue_date: document.getElementById('issue_date').value,
     sell_date: document.getElementById('sell_date').value,
@@ -126,22 +147,33 @@ const sendFormData = (e) => {
     seller_tax_no: document.getElementById('seller_tax_no').value,
     buyer_name: document.getElementById('buyer_name').value,
     buyer_tax_no: document.getElementById('buyer_tax_no').value,
-    positions: [],
+    positions: Array.apply(null, Array(invoiceItemsLength)).map(() => ({})),
   };
 
-  const invoiceItemsLength = document.getElementsByClassName('positions-list-item').length;
-  for (let i = 1; i <= invoiceItemsLength; i++) {
-    const name = document.getElementById(`input--name--${i}`).value;
-    const tax = document.getElementById(`input--tax--${i}`).value;
-    const total_price_gross = document.getElementById(`input--total_price_gross--${i}`).value;
-    const quantity = document.getElementById(`input--quantity--${i}`).value;
-    dataToSend.positions.push({
-      name,
-      tax,
-      total_price_gross,
-      quantity,
-    });
-  }
+  document.querySelectorAll(`.${POSITIONS_LIST_ITEM_CLASS_NAME}`).forEach((li, index) => {
+    if (!li.id.startsWith(NEW_ITEM_ID_PREFIX)) {
+      dataToSend.positions[index]['id'] = li.id;
+    }
+    if (li.classList.contains('d-none')) {
+      dataToSend.positions[index]['_destroy'] = 1;
+    }
+  });
+
+  document.querySelectorAll('.input--name').forEach((input, index) => {
+    dataToSend.positions[index]['name'] = input.value;
+  });
+
+  document.querySelectorAll('.input--tax').forEach((input, index) => {
+    dataToSend.positions[index]['tax'] = input.value;
+  });
+
+  document.querySelectorAll('.input--total_price_gross').forEach((input, index) => {
+    dataToSend.positions[index]['total_price_gross'] = input.value;
+  });
+
+  document.querySelectorAll('.input--quantity').forEach((input, index) => {
+    dataToSend.positions[index]['quantity'] = input.value;
+  });
 
   (id
       ? updateInvoice(id, dataToSend)
