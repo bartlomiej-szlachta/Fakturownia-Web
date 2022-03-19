@@ -28,7 +28,7 @@ const addInvoiceItem = (itemData) => {
           <div class="col-6 col-sm-2">
             <label for="${taxInputId}">Stawka VAT</label>
             <input id="${taxInputId}"
-                   class="input--vat"
+                   class="input--tax"
                    type="number"
                    value="${itemData?.tax ?? ''}"
                    min="0"
