@@ -1,3 +1,4 @@
+const INVOICES_LIST_ITEM_CLASS_NAME = 'invoices-list-item';
 const BUTTON_EDIT_INVOICE_CLASS_NAME = 'button-edit-invoice';
 const BUTTON_DELETE_INVOICE_CLASS_NAME = 'button-delete-invoice';
 
@@ -32,6 +33,11 @@ const requestDeleteInvoice = (id) => {
   deleteInvoice(id)
     .then(result => {
       document.getElementById(id).remove();
+      const numberOfInvoices = document.getElementsByClassName(INVOICES_LIST_ITEM_CLASS_NAME).length;
+      if (numberOfInvoices === 0) {
+        const noInvoicesMessageElement = document.getElementById('message-no-invoices');
+        showElement(noInvoicesMessageElement);
+      }
     })
     .catch(result => {
       showElement(errorMessageElement);
@@ -43,12 +49,12 @@ const requestDeleteInvoice = (id) => {
 };
 
 const addInvoiceListItem = (invoiceData) => {
-  const listElement = document.getElementById('invoices-list');
 
   const editInvoiceButtonId = `${BUTTON_EDIT_INVOICE_CLASS_NAME}--${invoiceData.id}`;
   const deleteInvoiceButtonId = `${BUTTON_DELETE_INVOICE_CLASS_NAME}--${invoiceData.id}`;
   const liElement = document.createElement('li');
   liElement.id = invoiceData.id;
+  liElement.classList.add(INVOICES_LIST_ITEM_CLASS_NAME);
   liElement.innerHTML = `
     <div class="container-fluid">
       <div class="row">
@@ -73,6 +79,11 @@ const addInvoiceListItem = (invoiceData) => {
       </div>
     </div>
   `;
+
+  const noInvoicesMessageElement = document.getElementById('message-no-invoices');
+  hideElement(noInvoicesMessageElement);
+
+  const listElement = document.getElementById('invoices-list');
   listElement.appendChild(liElement);
 
   document.getElementById(editInvoiceButtonId)
