@@ -54,7 +54,7 @@ const addInvoiceItem = (itemData) => {
             <input id="${quantityInputId}"
                    class="input--quantity"
                    type="number"
-                   value="${Math.floor(itemData?.quantity) ?? 1}"
+                   value="${Math.floor(itemData?.quantity ?? 1)}"
                    min="1"
                    step="1"
             />
