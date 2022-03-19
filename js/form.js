@@ -27,6 +27,14 @@ const removeInvoiceItem = (invoiceItemId) => {
   } else {
     listItemElement.classList.add('d-none');
   }
+
+  const numberOfVisibleItems = document.getElementById('positions-list')
+    .querySelectorAll(':scope > li:not(.d-none)')
+    .length;
+  if (numberOfVisibleItems === 0) {
+    const noItemsMessageElement = document.getElementById('message-no-items');
+    showElement(noItemsMessageElement);
+  }
 };
 
 const addInvoiceItem = (itemData) => {
