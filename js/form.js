@@ -20,6 +20,20 @@ const enableAllFields = () => {
     });
 };
 
+const updateTotalPrice = () => {
+  let priceTotal = 0;
+
+  document.querySelectorAll('.positions-list-item').forEach(li => {
+    const priceGrossString = li.querySelector('.input--total_price_gross').value;
+    const quantityString = li.querySelector('.input--quantity').value;
+
+    priceTotal += parseFloat(priceGrossString || '0') * parseFloat(quantityString || '0');
+  });
+
+  const spanElement = document.getElementById('total-price');
+  spanElement.innerText = priceTotal;
+};
+
 const removeInvoiceItem = (invoiceItemId) => {
   const listItemElement = document.getElementById(invoiceItemId);
   if (listItemElement.id.includes(NEW_ITEM_ID_PREFIX)) {
@@ -35,6 +49,8 @@ const removeInvoiceItem = (invoiceItemId) => {
     const noItemsMessageElement = document.getElementById('message-no-items');
     showElement(noItemsMessageElement);
   }
+
+  updateTotalPrice();
 };
 
 const addInvoiceItem = (itemData) => {
@@ -112,6 +128,12 @@ const addInvoiceItem = (itemData) => {
 
   const listElement = document.getElementById('positions-list');
   listElement.appendChild(listItemElement);
+
+  document.getElementById(totalPriceGrossInputId)
+    .addEventListener('input', updateTotalPrice);
+
+  document.getElementById(quantityInputId)
+    .addEventListener('input', updateTotalPrice);
 
   document.getElementById(removeItemButtonId)
     .addEventListener('click', () => removeInvoiceItem(invoiceItemId));
