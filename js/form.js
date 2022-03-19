@@ -13,77 +13,80 @@ const addInvoiceItem = (itemData) => {
   const quantityInputId = `input--quantity--${invoiceItemId}`;
   const removeItemButtonId = `button-remove-item--${invoiceItemId}`;
 
-  const listItemHtml = `
-    <li id="${invoiceItemId}" class="${POSITIONS_LIST_ITEM_CLASS_NAME}">
-      <div class="container-fluid px-0">
-        <div class="row">
-          <div class="col-12 col-md-4">
-            <label for="${nameInputId}">Nazwa</label>
-            <input id="${nameInputId}"
-                   class="input--name"
-                   type="text"
-                   value="${itemData?.name ?? ''}"
-            />
-          </div>
-          <div class="col-3 col-md-2">
-            <label for="${taxInputId}">Stawka VAT</label>
-            <select id="${taxInputId}"
-                    class="input--tax w-100"
-            >
-              <option ${(itemData?.tax === '23%' || !itemData || !itemData?.tax) && 'selected'}>23%</option>
-              <option ${itemData?.tax === '8%' && 'selected'}>8%</option>
-              <option ${itemData?.tax === '5%' && 'selected'}>5%</option>
-              <option ${itemData?.tax === '0%' && 'selected'}>0%</option>
-              <option ${itemData?.tax === 'ZW' && 'selected'}>ZW</option>
-              <option ${itemData?.tax === 'np.' && 'selected'}>np.</option>
-            </select>
-          </div>
-          <div class="col-3 col-md-2">
-            <label for="${totalPriceGrossInputId}">Wart. brutto</label>
-            <input id="${totalPriceGrossInputId}"
-                   class="input--total_price_gross"
-                   type="number"
-                   value="${parseFloat(itemData?.total_price_gross ?? 0).toFixed(2)}"
-                   min="0"
-                   step="0.01"
-                   placeholder="0.00"
-            />
-          </div>
-          <div class="col-3 col-md-2">
-            <label for="${quantityInputId}">Ilość</label>
-            <input id="${quantityInputId}"
-                   class="input--quantity"
-                   type="number"
-                   value="${Math.floor(itemData?.quantity ?? 1)}"
-                   min="1"
-                   step="1"
-            />
-          </div>
-          <div class="col-3 col-md-2 d-flex justify-content-center align-items-end"> 
-            <button id="${removeItemButtonId}"
-                    type="button"
-                    onclick="
-                      const listItemElement = document.getElementById('${invoiceItemId}');
-                      if (listItemElement.id.includes('${NEW_ITEM_ID_PREFIX}')) {
-                        listItemElement.remove();
-                      } else {
-                        listItemElement.classList.add('d-none');
-                      }
-                    "
-            >
-              Usuń
-            </button> 
-          </div>
-        </div>
-      </div>
-    </li>
-  `;
-
   const noItemsMessageElement = document.getElementById('message-no-items');
   hideElement(noItemsMessageElement);
 
+  const listItemContentHtml = `
+    <div class="container-fluid px-0">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <label for="${nameInputId}">Nazwa</label>
+          <input id="${nameInputId}"
+                 class="input--name"
+                 type="text"
+                 value="${itemData?.name ?? ''}"
+          />
+        </div>
+        <div class="col-3 col-md-2">
+          <label for="${taxInputId}">Stawka VAT</label>
+          <select id="${taxInputId}"
+                  class="input--tax w-100"
+          >
+            <option ${(itemData?.tax === '23%' || !itemData || !itemData?.tax) && 'selected'}>23%</option>
+            <option ${itemData?.tax === '8%' && 'selected'}>8%</option>
+            <option ${itemData?.tax === '5%' && 'selected'}>5%</option>
+            <option ${itemData?.tax === '0%' && 'selected'}>0%</option>
+            <option ${itemData?.tax === 'ZW' && 'selected'}>ZW</option>
+            <option ${itemData?.tax === 'np.' && 'selected'}>np.</option>
+          </select>
+        </div>
+        <div class="col-3 col-md-2">
+          <label for="${totalPriceGrossInputId}">Wart. brutto</label>
+          <input id="${totalPriceGrossInputId}"
+                 class="input--total_price_gross"
+                 type="number"
+                 value="${parseFloat(itemData?.total_price_gross ?? 0).toFixed(2)}"
+                 min="0"
+                 step="0.01"
+                 placeholder="0.00"
+          />
+        </div>
+        <div class="col-3 col-md-2">
+          <label for="${quantityInputId}">Ilość</label>
+          <input id="${quantityInputId}"
+                 class="input--quantity"
+                 type="number"
+                 value="${Math.floor(itemData?.quantity ?? 1)}"
+                 min="1"
+                 step="1"
+          />
+        </div>
+        <div class="col-3 col-md-2 d-flex justify-content-center align-items-end"> 
+          <button id="${removeItemButtonId}"
+                  type="button"
+                  onclick="
+                    const listItemElement = document.getElementById('${invoiceItemId}');
+                    if (listItemElement.id.includes('${NEW_ITEM_ID_PREFIX}')) {
+                      listItemElement.remove();
+                    } else {
+                      listItemElement.classList.add('d-none');
+                    }
+                  "
+          >
+            Usuń
+          </button> 
+        </div>
+      </div>
+    </div>
+  `;
+
+  const listItemElement = document.createElement('li');
+  listItemElement.id = invoiceItemId;
+  listItemElement.classList.add(POSITIONS_LIST_ITEM_CLASS_NAME);
+  listItemElement.innerHTML = listItemContentHtml;
+
   const listElement = document.getElementById('positions-list');
-  listElement.innerHTML += listItemHtml;
+  listElement.appendChild(listItemElement);
   window.scrollTo({
     top: document.body.scrollHeight,
     behavior: 'smooth',
