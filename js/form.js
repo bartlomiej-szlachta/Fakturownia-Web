@@ -62,17 +62,7 @@ const addInvoiceItem = (itemData) => {
           />
         </div>
         <div class="col-3 col-md-2 d-flex justify-content-center align-items-end"> 
-          <button id="${removeItemButtonId}"
-                  type="button"
-                  onclick="
-                    const listItemElement = document.getElementById('${invoiceItemId}');
-                    if (listItemElement.id.includes('${NEW_ITEM_ID_PREFIX}')) {
-                      listItemElement.remove();
-                    } else {
-                      listItemElement.classList.add('d-none');
-                    }
-                  "
-          >
+          <button id="${removeItemButtonId}" type="button">
             Usuń
           </button> 
         </div>
@@ -87,6 +77,16 @@ const addInvoiceItem = (itemData) => {
 
   const listElement = document.getElementById('positions-list');
   listElement.appendChild(listItemElement);
+
+  document.getElementById(removeItemButtonId).addEventListener('click', () => {
+    const listItemElement = document.getElementById(invoiceItemId);
+    if (listItemElement.id.includes(NEW_ITEM_ID_PREFIX)) {
+      listItemElement.remove();
+    } else {
+      listItemElement.classList.add('d-none');
+    }
+  });
+
   window.scrollTo({
     top: document.body.scrollHeight,
     behavior: 'smooth',
