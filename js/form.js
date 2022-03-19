@@ -20,6 +20,15 @@ const enableAllFields = () => {
     });
 };
 
+const removeInvoiceItem = (invoiceItemId) => {
+  const listItemElement = document.getElementById(invoiceItemId);
+  if (listItemElement.id.includes(NEW_ITEM_ID_PREFIX)) {
+    listItemElement.remove();
+  } else {
+    listItemElement.classList.add('d-none');
+  }
+};
+
 const addInvoiceItem = (itemData) => {
   const invoiceItemId = itemData?.id ?? `${NEW_ITEM_ID_PREFIX}${new Date().getTime()}`;
   const nameInputId = `input--name--${invoiceItemId}`;
@@ -96,14 +105,8 @@ const addInvoiceItem = (itemData) => {
   const listElement = document.getElementById('positions-list');
   listElement.appendChild(listItemElement);
 
-  document.getElementById(removeItemButtonId).addEventListener('click', () => {
-    const listItemElement = document.getElementById(invoiceItemId);
-    if (listItemElement.id.includes(NEW_ITEM_ID_PREFIX)) {
-      listItemElement.remove();
-    } else {
-      listItemElement.classList.add('d-none');
-    }
-  });
+  document.getElementById(removeItemButtonId)
+    .addEventListener('click', () => removeInvoiceItem(invoiceItemId));
 
   window.scrollTo({
     top: document.body.scrollHeight,
