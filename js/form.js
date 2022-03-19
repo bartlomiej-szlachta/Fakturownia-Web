@@ -27,12 +27,16 @@ const addInvoiceItem = (itemData) => {
           </div>
           <div class="col-3 col-md-2">
             <label for="${taxInputId}">Stawka VAT</label>
-            <input id="${taxInputId}"
-                   class="input--tax"
-                   type="number"
-                   value="${itemData?.tax ?? ''}"
-                   min="0"
-            />
+            <select id="${taxInputId}"
+                    class="input--tax w-100"
+            >
+              <option ${(itemData?.tax === '23%' || !itemData || !itemData?.tax) && 'selected'}>23%</option>
+              <option ${itemData?.tax === '8%' && 'selected'}>8%</option>
+              <option ${itemData?.tax === '5%' && 'selected'}>5%</option>
+              <option ${itemData?.tax === '0%' && 'selected'}>0%</option>
+              <option ${itemData?.tax === 'ZW' && 'selected'}>ZW</option>
+              <option ${itemData?.tax === 'np.' && 'selected'}>np.</option>
+            </select>
           </div>
           <div class="col-3 col-md-2">
             <label for="${totalPriceGrossInputId}">Wart. brutto</label>
