@@ -43,9 +43,10 @@ const addInvoiceItem = (itemData) => {
             <input id="${totalPriceGrossInputId}"
                    class="input--total_price_gross"
                    type="number"
-                   value="${itemData?.total_price_gross ?? ''}"
+                   value="${parseFloat(itemData?.total_price_gross ?? 0).toFixed(2)}"
                    min="0"
-                   step="0.1"
+                   step="0.01"
+                   placeholder="0.00"
             />
           </div>
           <div class="col-3 col-md-2">
