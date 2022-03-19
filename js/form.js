@@ -1,8 +1,23 @@
 const POSITIONS_LIST_ITEM_CLASS_NAME = 'positions-list-item';
+const BUTTON_REMOVE_ITEM_CLASS_NAME = 'button-remove-item';
 const NEW_ITEM_ID_PREFIX = 'NewItem';
 
 const navigateToList = () => {
   window.location.href = 'list.html';
+};
+
+const disableAllFields = () => {
+  document.querySelectorAll(`input, select, .${BUTTON_REMOVE_ITEM_CLASS_NAME}, #button-add-item, #button-save-invoice`)
+    .forEach((input) => {
+      input.disabled = true;
+    });
+};
+
+const enableAllFields = () => {
+  document.querySelectorAll(`input, select, .${BUTTON_REMOVE_ITEM_CLASS_NAME}, #button-add-item, #button-save-invoice`)
+    .forEach((input) => {
+      input.disabled = false;
+    });
 };
 
 const addInvoiceItem = (itemData) => {
@@ -11,7 +26,7 @@ const addInvoiceItem = (itemData) => {
   const taxInputId = `input--tax--${invoiceItemId}`;
   const totalPriceGrossInputId = `input--total_price_gross--${invoiceItemId}`;
   const quantityInputId = `input--quantity--${invoiceItemId}`;
-  const removeItemButtonId = `button-remove-item--${invoiceItemId}`;
+  const removeItemButtonId = `${BUTTON_REMOVE_ITEM_CLASS_NAME}--${invoiceItemId}`;
 
   const noItemsMessageElement = document.getElementById('message-no-items');
   hideElement(noItemsMessageElement);
@@ -62,7 +77,10 @@ const addInvoiceItem = (itemData) => {
           />
         </div>
         <div class="col-3 col-md-2 d-flex justify-content-center align-items-end"> 
-          <button id="${removeItemButtonId}" type="button">
+          <button id="${removeItemButtonId}"
+                  type="button"
+                  class="${BUTTON_REMOVE_ITEM_CLASS_NAME}"
+          >
             Usuń
           </button> 
         </div>
@@ -143,6 +161,7 @@ const initializeFormValues = () => {
 };
 
 const sendFormData = (e) => {
+  const loadingAnimationElement = document.getElementById('loading-animation');
   const errorMessageElement = document.getElementById('error-message');
 
   const id = new URLSearchParams(window.location.search).get('id');
@@ -184,6 +203,10 @@ const sendFormData = (e) => {
     dataToSend.positions[index]['quantity'] = input.value;
   });
 
+  disableAllFields();
+  showElement(loadingAnimationElement);
+  hideElement(errorMessageElement);
+
   (id
       ? updateInvoice(id, dataToSend)
       : createInvoice(dataToSend)
@@ -193,6 +216,10 @@ const sendFormData = (e) => {
     })
     .catch(error => {
       showElement(errorMessageElement);
+    })
+    .finally(() => {
+      enableAllFields();
+      hideElement(loadingAnimationElement);
     });
 
   e.preventDefault();
