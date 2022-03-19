@@ -20,9 +20,31 @@
 </head>
 <body>
 <div class="container">
-  <h1>Lista</h1>
-  <a href="form.html">Dodaj</a>
-  <a href="form.html?id=147148445">Edytuj</a>
+  <header class="navbar">
+    <h1 id="header">
+      Lista faktur
+    </h1>
+  </header>
+  <main>
+    <ul>
+      <li>
+        <a href="form.html?id=147148445">Edytuj</a>
+      </li>
+    </ul>
+    <div id="loading-animation" class="d-none">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status"></div>
+      </div>
+    </div>
+    <div id="error-message" class="d-none">
+      Nie udało się załadować danych
+    </div>
+  </main>
+  <footer class="navbar">
+    <button id="button-add-invoice">
+      Dodaj fakturę
+    </button>
+  </footer>
 </div>
 <script type="text/javascript" src="../js/api.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
