@@ -17,7 +17,7 @@ const addInvoiceItem = (itemData) => {
     <li id="${invoiceItemId}" class="${POSITIONS_LIST_ITEM_CLASS_NAME}">
       <div class="container-fluid px-0">
         <div class="row">
-          <div class="col-6 col-sm-4">
+          <div class="col-12 col-md-4">
             <label for="${nameInputId}">Nazwa</label>
             <input id="${nameInputId}"
                    class="input--name"
@@ -25,7 +25,7 @@ const addInvoiceItem = (itemData) => {
                    value="${itemData?.name ?? ''}"
             />
           </div>
-          <div class="col-6 col-sm-2">
+          <div class="col-3 col-md-2">
             <label for="${taxInputId}">Stawka VAT</label>
             <input id="${taxInputId}"
                    class="input--tax"
@@ -34,8 +34,8 @@ const addInvoiceItem = (itemData) => {
                    min="0"
             />
           </div>
-          <div class="col-6 col-sm-2">
-            <label for="${totalPriceGrossInputId}">Wartość brutto</label>
+          <div class="col-3 col-md-2">
+            <label for="${totalPriceGrossInputId}">Wart. brutto</label>
             <input id="${totalPriceGrossInputId}"
                    class="input--total_price_gross"
                    type="number"
@@ -44,7 +44,7 @@ const addInvoiceItem = (itemData) => {
                    step="0.1"
             />
           </div>
-          <div class="col-6 col-sm-2">
+          <div class="col-3 col-md-2">
             <label for="${quantityInputId}">Ilość</label>
             <input id="${quantityInputId}"
                    class="input--quantity"
@@ -53,7 +53,7 @@ const addInvoiceItem = (itemData) => {
                    min="1"
             />
           </div>
-          <div class="col-12 col-sm-2"> 
+          <div class="col-3 col-md-2 d-flex justify-content-center align-items-end"> 
             <button id="${removeItemButtonId}"
                     type="button"
                     onclick="
