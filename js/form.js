@@ -73,6 +73,7 @@ const addInvoiceItem = (itemData) => {
                  class="input--name form-control"
                  type="text"
                  value="${itemData?.name ?? ''}"
+                 required
           />
         </div>
         <div class="col-3 col-md-2">
@@ -263,6 +264,8 @@ const sendFormData = (e) => {
 initializeFormValues();
 
 document.getElementById('invoice-form').addEventListener('submit', sendFormData);
-document.getElementById('button-save-invoice').addEventListener('click', sendFormData);
+document.getElementById('button-save-invoice').addEventListener('click', () => {
+  document.getElementById('button-fake-submit').click();
+});
 document.getElementById('button-add-item').addEventListener('click', addInvoiceItem);
 document.getElementById('button-go-to-list').addEventListener('click', navigateToList);
