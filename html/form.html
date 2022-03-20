@@ -20,16 +20,16 @@
 </head>
 <body>
 <div class="container">
-  <header class="navbar">
-    <h1 id="header"></h1>
+  <header>
+    <h1 id="header" class="display-4"></h1>
     <span id="subheader"></span>
   </header>
   <main>
     <form id="invoice-form" class="d-none">
       <div class="container-fluid px-0">
-        <div class="row">
-          <div class="col-12 col-sm-6">
-            <div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-12 col-sm-6">
               <label for="issue_date"
                      class="form-label"
               >
@@ -40,9 +40,7 @@
                      class="form-control"
               />
             </div>
-          </div>
-          <div class="col-12 col-sm-6">
-            <div>
+            <div class="col-12 col-sm-6">
               <label for="sell_date"
                      class="form-label"
               >
@@ -57,8 +55,10 @@
         </div>
         <div class="row">
           <div class="col-12 col-sm-6">
-            <h4>Sprzedawca</h4>
-            <div>
+            <fieldset class="form-group">
+              <legend>
+                Sprzedawca
+              </legend>
               <label for="seller_name"
                      class="form-label"
               >
@@ -68,8 +68,6 @@
                      type="text"
                      class="form-control"
               />
-            </div>
-            <div>
               <label for="seller_tax_no"
                      class="form-label"
               >
@@ -80,11 +78,13 @@
                      class="form-control"
                      maxlength="10"
               />
-            </div>
+            </fieldset>
           </div>
           <div class="col-12 col-sm-6">
-            <h4>Nabywca</h4>
-            <div>
+            <fieldset class="form-group">
+              <legend>
+                Nabywca
+              </legend>
               <label for="buyer_name"
                      class="form-label"
               >
@@ -95,8 +95,6 @@
                      class="form-control"
                      required
               />
-            </div>
-            <div>
               <label for="buyer_tax_no"
                      class="form-label"
               >
@@ -107,19 +105,23 @@
                      class="form-control"
                      maxlength="10"
               />
+            </fieldset>
+          </div>
+        </div>
+        <fieldset class="form-group">
+          <legend>
+            Pozycje
+          </legend>
+          <div class="row">
+            <div class="col-12">
+              <ol id="positions-list">
+              </ol>
+              <p id="message-no-items" class="d-none">
+                Brak pozycji faktury
+              </p>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <h4>Pozycje</h4>
-            <ol id="positions-list">
-            </ol>
-            <p id="message-no-items" class="d-none">
-              Brak pozycji faktury
-            </p>
-          </div>
-        </div>
+        </fieldset>
         <div class="row">
           <div class="col-12">
             <p>
@@ -145,7 +147,7 @@
       Nie udało się załadować danych
     </div>
   </main>
-  <footer class="navbar">
+  <footer>
     <button id="button-add-item" type="button" class="mr-auto btn btn-secondary">
       Dodaj pozycję
     </button>
