@@ -126,7 +126,7 @@ const addInvoiceItem = (itemData) => {
                  step="1"
           />
         </div>
-        <div class="col-3 col-md-2 d-flex justify-content-center align-items-end"> 
+        <div class="col-3 col-md-2 d-flex justify-content-end align-items-end"> 
           <button id="${removeItemButtonId}"
                   type="button"
                   class="${BUTTON_REMOVE_ITEM_CLASS_NAME} btn btn-danger"
