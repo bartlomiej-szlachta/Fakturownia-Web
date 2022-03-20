@@ -142,14 +142,21 @@
             </div>
           </div>
         </fieldset>
-        <div class="row">
-          <button type="submit" class="d-none">
-            Zapisz
+        <div class="row d-flex justify-content-end">
+          <button id="button-save-invoice"
+                  class="btn btn-primary"
+                  type="submit"
+          >
+            Zapisz fakturę
+          </button>
+          <button id="button-go-to-list"
+                  class="btn btn-secondary"
+                  type="button"
+          >
+            Powrót do listy
           </button>
         </div>
       </div>
-      <button id="button-fake-submit" class="d-none" type="submit">
-      </button>
     </form>
     <div id="loading-animation" class="d-none">
       <div class="d-flex justify-content-center">
@@ -160,14 +167,6 @@
       Nie udało się załadować danych
     </div>
   </main>
-  <footer class="d-flex justify-content-end">
-    <button id="button-save-invoice" class="btn btn-primary">
-      Zapisz fakturę
-    </button>
-    <button id="button-go-to-list" class="btn btn-secondary">
-      Powrót do listy
-    </button>
-  </footer>
 </div>
 <script type="text/javascript" src="../js/api.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>

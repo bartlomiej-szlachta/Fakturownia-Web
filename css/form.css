@@ -7,6 +7,6 @@ input {
     width: 100%;
 }
 
-footer button {
+#button-save-invoice, #button-go-to-list {
     margin: 2px;
 }
