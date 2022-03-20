@@ -49,7 +49,6 @@ const requestDeleteInvoice = (id) => {
 };
 
 const addInvoiceListItem = (invoiceData) => {
-
   const editInvoiceButtonId = `${BUTTON_EDIT_INVOICE_CLASS_NAME}--${invoiceData.id}`;
   const deleteInvoiceButtonId = `${BUTTON_DELETE_INVOICE_CLASS_NAME}--${invoiceData.id}`;
   const liElement = document.createElement('li');
