@@ -100,8 +100,6 @@ const initializeInvoicesList = () => {
   const loadingAnimationElement = document.getElementById('loading-animation');
   const errorMessageElement = document.getElementById('error-message');
 
-  showElement(loadingAnimationElement);
-
   getAllInvoices()
     .then((data) => {
       data.forEach(addInvoiceListItem);
