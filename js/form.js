@@ -238,6 +238,11 @@ const initializeFormValues = () => {
   const errorMessageElement = document.getElementById('error-message');
 
   if (!id) {
+    const inputIssueDateElement = document.getElementById('issue_date');
+    const inputSellDateElement = document.getElementById('sell_date');
+    inputIssueDateElement.valueAsDate = new Date();
+    inputSellDateElement.valueAsDate = new Date();
+
     headerElement.innerText = 'Nowa faktura';
     addInvoiceItem();
     showElement(formElement);
