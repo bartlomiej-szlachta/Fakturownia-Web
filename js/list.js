@@ -69,10 +69,10 @@ const addInvoiceListItem = (invoiceData) => {
           </p>
         </div>
         <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
-          <button id="${editInvoiceButtonId}" class="${BUTTON_EDIT_INVOICE_CLASS_NAME}">
+          <button id="${editInvoiceButtonId}" class="${BUTTON_EDIT_INVOICE_CLASS_NAME} btn btn-secondary">
             Edytuj
           </button>
-          <button id="${deleteInvoiceButtonId}" class="${BUTTON_DELETE_INVOICE_CLASS_NAME}">
+          <button id="${deleteInvoiceButtonId}" class="${BUTTON_DELETE_INVOICE_CLASS_NAME} btn btn-danger">
             Usuń
           </button>
         </div>

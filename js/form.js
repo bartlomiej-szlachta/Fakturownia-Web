@@ -70,7 +70,7 @@ const addInvoiceItem = (itemData) => {
         <div class="col-12 col-md-4">
           <label for="${nameInputId}">Nazwa</label>
           <input id="${nameInputId}"
-                 class="input--name"
+                 class="input--name form-control"
                  type="text"
                  value="${itemData?.name ?? ''}"
           />
@@ -78,7 +78,7 @@ const addInvoiceItem = (itemData) => {
         <div class="col-3 col-md-2">
           <label for="${taxInputId}">Stawka VAT</label>
           <select id="${taxInputId}"
-                  class="input--tax w-100"
+                  class="input--tax w-100 form-control"
           >
             <option ${(itemData?.tax === '23%' || !itemData || !itemData?.tax) && 'selected'}>23%</option>
             <option ${itemData?.tax === '8%' && 'selected'}>8%</option>
@@ -91,7 +91,7 @@ const addInvoiceItem = (itemData) => {
         <div class="col-3 col-md-2">
           <label for="${totalPriceGrossInputId}">Wart. brutto</label>
           <input id="${totalPriceGrossInputId}"
-                 class="input--total_price_gross"
+                 class="input--total_price_gross form-control"
                  type="number"
                  value="${parseFloat(itemData?.total_price_gross ?? 0).toFixed(2)}"
                  min="0"
@@ -102,7 +102,7 @@ const addInvoiceItem = (itemData) => {
         <div class="col-3 col-md-2">
           <label for="${quantityInputId}">Ilość</label>
           <input id="${quantityInputId}"
-                 class="input--quantity"
+                 class="input--quantity form-control"
                  type="number"
                  value="${Math.floor(itemData?.quantity ?? 1)}"
                  min="1"
@@ -112,7 +112,7 @@ const addInvoiceItem = (itemData) => {
         <div class="col-3 col-md-2 d-flex justify-content-center align-items-end"> 
           <button id="${removeItemButtonId}"
                   type="button"
-                  class="${BUTTON_REMOVE_ITEM_CLASS_NAME}"
+                  class="${BUTTON_REMOVE_ITEM_CLASS_NAME} btn btn-danger"
           >
             Usuń
           </button> 

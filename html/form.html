@@ -31,13 +31,19 @@
           <div class="col-12 col-sm-6">
             <div>
               <label for="issue_date">Data wystawienia</label>
-              <input id="issue_date" type="date" />
+              <input id="issue_date"
+                     type="date"
+                     class="form-control"
+              />
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div>
               <label for="sell_date">Data sprzedaży</label>
-              <input id="sell_date" type="date" />
+              <input id="sell_date"
+                     type="date"
+                     class="form-control"
+              />
             </div>
           </div>
         </div>
@@ -46,12 +52,16 @@
             <h4>Sprzedawca</h4>
             <div>
               <label for="seller_name">Nazwa</label>
-              <input id="seller_name" type="text" />
+              <input id="seller_name"
+                     type="text"
+                     class="form-control"
+              />
             </div>
             <div>
               <label for="seller_tax_no">NIP</label>
               <input id="seller_tax_no"
                      type="text"
+                     class="form-control"
                      maxlength="10"
               />
             </div>
@@ -60,12 +70,16 @@
             <h4>Nabywca</h4>
             <div>
               <label for="buyer_name">Nazwa</label>
-              <input id="buyer_name" type="text" />
+              <input id="buyer_name"
+                     type="text"
+                     class="form-control"
+              />
             </div>
             <div>
               <label for="buyer_tax_no">NIP</label>
               <input id="buyer_tax_no"
                      type="text"
+                     class="form-control"
                      maxlength="10"
               />
             </div>
@@ -105,13 +119,13 @@
     </div>
   </main>
   <footer class="navbar">
-    <button id="button-add-item" type="button" class="mr-auto">
+    <button id="button-add-item" type="button" class="mr-auto btn btn-secondary">
       Dodaj pozycję
     </button>
-    <button id="button-save-invoice">
+    <button id="button-save-invoice" class="btn btn-primary">
       Zapisz fakturę
     </button>
-    <button id="button-go-to-list">
+    <button id="button-go-to-list" class="btn btn-secondary">
       Powrót do listy
     </button>
   </footer>
