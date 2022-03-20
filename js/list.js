@@ -59,7 +59,7 @@ const addInvoiceListItem = (invoiceData) => {
   liElement.id = invoiceData.id;
   liElement.classList.add(INVOICES_LIST_ITEM_CLASS_NAME);
   liElement.innerHTML = `
-    <div class="container-fluid">
+    <div class="container-fluid px-0">
       <div class="row">
         <div class="col-12 col-sm-8">
           <h6>
