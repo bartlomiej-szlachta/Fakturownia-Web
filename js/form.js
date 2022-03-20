@@ -68,7 +68,11 @@ const addInvoiceItem = (itemData) => {
     <div class="container-fluid px-0">
       <div class="row">
         <div class="col-12 col-md-4">
-          <label for="${nameInputId}">Nazwa</label>
+          <label for="${nameInputId}"
+                 class="form-label"
+          >
+            Nazwa
+          </label>
           <input id="${nameInputId}"
                  class="input--name form-control"
                  type="text"
@@ -77,7 +81,11 @@ const addInvoiceItem = (itemData) => {
           />
         </div>
         <div class="col-3 col-md-2">
-          <label for="${taxInputId}">Stawka VAT</label>
+          <label for="${taxInputId}"
+                 class="form-label"
+          >
+            Stawka VAT
+          </label>
           <select id="${taxInputId}"
                   class="input--tax w-100 form-control"
           >
@@ -90,7 +98,11 @@ const addInvoiceItem = (itemData) => {
           </select>
         </div>
         <div class="col-3 col-md-2">
-          <label for="${totalPriceGrossInputId}">Wart. brutto</label>
+          <label for="${totalPriceGrossInputId}"
+                 class="form-label"
+          >
+            Wart. brutto
+          </label>
           <input id="${totalPriceGrossInputId}"
                  class="input--total_price_gross form-control"
                  type="number"
@@ -101,7 +113,11 @@ const addInvoiceItem = (itemData) => {
           />
         </div>
         <div class="col-3 col-md-2">
-          <label for="${quantityInputId}">Ilość</label>
+          <label for="${quantityInputId}"
+                 class="form-label"
+          >
+            Ilość
+          </label>
           <input id="${quantityInputId}"
                  class="input--quantity form-control"
                  type="number"
