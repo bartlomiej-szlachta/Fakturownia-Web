@@ -31,7 +31,7 @@ const updateTotalPrice = () => {
   });
 
   const spanElement = document.getElementById('total-price');
-  spanElement.innerText = priceTotal;
+  spanElement.innerText = priceTotal.toFixed(2);
 };
 
 const removeInvoiceItem = (invoiceItemId) => {
