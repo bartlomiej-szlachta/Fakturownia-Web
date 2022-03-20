@@ -22,6 +22,14 @@ const enableAllFields = () => {
   });
 };
 
+const checkAndUpdateNoInvoicesMessage = () => {
+  const numberOfInvoices = document.getElementsByClassName(INVOICES_LIST_ITEM_CLASS_NAME).length;
+  if (numberOfInvoices === 0) {
+    const noInvoicesMessageElement = document.getElementById('message-no-invoices');
+    showElement(noInvoicesMessageElement);
+  }
+};
+
 const requestDeleteInvoice = (id) => {
   const loadingAnimationElement = document.getElementById('loading-animation');
   const errorMessageElement = document.getElementById('error-message');
@@ -33,11 +41,7 @@ const requestDeleteInvoice = (id) => {
   deleteInvoice(id)
     .then(result => {
       document.getElementById(id).remove();
-      const numberOfInvoices = document.getElementsByClassName(INVOICES_LIST_ITEM_CLASS_NAME).length;
-      if (numberOfInvoices === 0) {
-        const noInvoicesMessageElement = document.getElementById('message-no-invoices');
-        showElement(noInvoicesMessageElement);
-      }
+      checkAndUpdateNoInvoicesMessage();
     })
     .catch(result => {
       showElement(errorMessageElement);
@@ -101,6 +105,7 @@ const initializeInvoicesList = () => {
   getAllInvoices()
     .then((data) => {
       data.forEach(addInvoiceListItem);
+      checkAndUpdateNoInvoicesMessage();
     })
     .catch(error => {
       showElement(errorMessageElement);
