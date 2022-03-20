@@ -21,7 +21,7 @@ const handleApiResponse = (promise) => promise
         message: 'Błąd pobierania danych',
       };
     }
-    if (response.status !== 200) {
+    if (!response.ok) {
       throw response.json();
     }
     return response.json();
