@@ -111,6 +111,9 @@ const initializeInvoicesList = () => {
     });
 };
 
-initializeInvoicesList();
+const initializeEventListeners = () => {
+  document.getElementById('button-add-invoice').addEventListener('click', navigateToFormAddMode);
+};
 
-document.getElementById('button-add-invoice').addEventListener('click', navigateToFormAddMode);
+initializeInvoicesList();
+initializeEventListeners();

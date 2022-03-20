@@ -261,11 +261,14 @@ const initializeFormValues = () => {
     });
 };
 
-initializeFormValues();
+const initializeEventListeners = () => {
+  document.getElementById('invoice-form').addEventListener('submit', sendFormData);
+  document.getElementById('button-save-invoice').addEventListener('click', () => {
+    document.getElementById('button-fake-submit').click();
+  });
+  document.getElementById('button-add-item').addEventListener('click', addInvoiceItem);
+  document.getElementById('button-go-to-list').addEventListener('click', navigateToList);
+};
 
-document.getElementById('invoice-form').addEventListener('submit', sendFormData);
-document.getElementById('button-save-invoice').addEventListener('click', () => {
-  document.getElementById('button-fake-submit').click();
-});
-document.getElementById('button-add-item').addEventListener('click', addInvoiceItem);
-document.getElementById('button-go-to-list').addEventListener('click', navigateToList);
+initializeFormValues();
+initializeEventListeners();
