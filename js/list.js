@@ -71,7 +71,7 @@ const addInvoiceListItem = (invoiceData) => {
             Nabywca: ${invoiceData['buyer_name']}
           </p>
         </div>
-        <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-sm-4 d-flex justify-content-end align-items-center">
           <button id="${editInvoiceButtonId}" class="${BUTTON_EDIT_INVOICE_CLASS_NAME} btn btn-secondary">
             Edytuj
           </button>
