@@ -1,8 +1,6 @@
 # fakturownia
 Aplikacja webowa do zarządzania fakturami, wykorzystująca [API serwisu Fakturownia](https://app.fakturownia.pl/api).
 
-Autorzy: Bartłomiej Szlachta, Oliwia Brożek
-
 ### Stos technologiczny
 
 - HTML5
