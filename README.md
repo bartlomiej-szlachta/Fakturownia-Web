@@ -12,7 +12,7 @@ Autorzy: Bartłomiej Szlachta, Oliwia Brożek
 
 ### Uruchamianie
 
-Wystarczy otworzyć w przeglądarce dowolny z plików znajdujących się w katalogu `html`.
+Wystarczy otworzyć w przeglądarce dowolny z plików znajdujących się w katalogu `/src/html`.
 
 ### Dostępne funkcjonalności
 
