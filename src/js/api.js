@@ -1,5 +1,5 @@
-const API_TOKEN = 'm7WLd5P43RjL3kQhMHwh';
-const OUR_DOMAIN = 'samograjepolsl';
+const API_TOKEN = 't91Lqddw3Fa3WX50JrN';
+const OUR_DOMAIN = 'bartek01570';
 const DATA_FORMAT = 'json';
 const BASE_URL = `https://${OUR_DOMAIN}.fakturownia.pl/invoices`;
 const params = new URLSearchParams({
