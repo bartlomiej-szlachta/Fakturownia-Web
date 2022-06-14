@@ -1,6 +1,6 @@
 describe('Lista faktur', () => {
   beforeEach(() => {
-    cy.visit('https://fakturownia-web.herokuapp.com/');
+    cy.visit('list.html');
   });
 
   it('Powinna wyświetlać nagłówek', () => {
