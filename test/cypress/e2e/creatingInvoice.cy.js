@@ -1,7 +1,7 @@
 describe('Dodawanie faktury', () => {
 
   it('Nowo dodana faktura powinna się pojawić na liście', () => {
-    cy.visit('list.html');
+    cy.visit('/');
     cy.wait(1000);
     cy.removeAllInvoices();
     cy.get('#button-add-invoice').click();
