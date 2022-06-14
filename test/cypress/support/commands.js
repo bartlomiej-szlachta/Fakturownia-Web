@@ -26,7 +26,7 @@
 
 Cypress.Commands.add('removeAllInvoices', () => {
   cy.document().then((document) => {
-    const isAnyInvoiceDefined = document.getElementsByClassName('button-delete-invoice').length;
+    const isAnyInvoiceDefined = document.getElementsByClassName('button-delete-invoice').length > 0;
     if (isAnyInvoiceDefined) {
       cy.get('.button-delete-invoice')
       .each((button) => {
