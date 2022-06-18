@@ -16,7 +16,7 @@ describe('Formularz dodawania / edycji faktury', () => {
   describe('W trybie edycji', () => {
 
     beforeEach(() => {
-      cy.visit(`/`);
+      cy.visit('/');
       cy.removeAllInvoices();
       cy.createExampleInvoice();
       cy.get('.button-edit-invoice').first().click();
