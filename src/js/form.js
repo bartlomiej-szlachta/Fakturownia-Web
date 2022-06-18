@@ -217,8 +217,6 @@ const sendFormData = (e) => {
     })
     .catch(error => {
       showElement(errorMessageElement);
-    })
-    .finally(() => {
       enableAllFields();
       hideElement(loadingAnimationElement);
     });
