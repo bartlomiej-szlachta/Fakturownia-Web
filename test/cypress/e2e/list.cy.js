@@ -1,6 +1,6 @@
 describe('Lista faktur', () => {
   beforeEach(() => {
-    cy.visit('list.html');
+    cy.visit('/');
   });
 
   it('Powinna wyświetlać nagłówek', () => {
@@ -18,6 +18,12 @@ describe('Lista faktur', () => {
 
   it('Przycisk dodawania faktury powinien przekierować do formularza', () => {
     cy.get('#button-add-invoice').click();
+    cy.url().should('include', 'form.html');
+  });
+
+  it('Przycisk edycji faktury powinien przekierować do formularza', () => {
+    cy.createExampleInvoice();
+    cy.get('.button-edit-invoice').first().click();
     cy.url().should('include', 'form.html');
   });
 
